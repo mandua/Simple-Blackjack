@@ -1,76 +1,30 @@
-# Simple Blackjack Game
-
-## Overview
-
-This project is a simple text-based Blackjack game written in Python. The player competes against a computer dealer by trying to get a hand value as close to 21 as possible without going over.
-
-The game uses a simplified deck consisting of card values 2 through 11, where 11 represents an Ace. The dealer follows standard Blackjack rules by continuing to draw cards until their hand value reaches at least 17.
-
-## Features
-
-* Deal two starting cards to the player
-* Hit or stay options
-* Dealer AI that automatically plays its turn
-* Bust detection for both player and dealer
-* Win, lose, and tie outcomes
-* Replay functionality
-* Input validation for user choices
+# Blackjack
+A simple command-line Blackjack game written in Python. Play against the dealer, choosing to hit or stay, with the goal of getting closer to 21 than the dealer without going over.
 
 ## How to Play
+You'll be greeted with the rules, then prompted to begin:
+Press enter to begin, or 'N' to stop:
 
-1. Run the program.
-2. Press Enter to start a game or type `N` to quit.
-3. You will receive two cards.
-4. Choose:
+Press Enter to start a hand, or type 'N' to exit immediately.
 
-   * `H` to hit and receive another card
-   * `S` to stay and end your turn
-5. The dealer will play automatically after you stay.
-6. The winner is determined by comparing hand totals:
+### Gameplay
+1. You're dealt two cards, and your hand total is shown.
+2. If your hand totals exactly 21, you win instantly. If it's over 21, you bust and lose instantly.
+3. Otherwise, you're asked to **hit** (`H`) to draw another card, or **stay** (`S`) to end your turn.
+   - You can keep hitting as many times as you like, as long as you haven't busted.
+4. Once you stay (or after your final hit doesn't bust or hit 21), the dealer plays automatically, drawing cards until their hand totals 17 or more.
+5. The winner is determined:
+   - If the dealer busts (over 21), you win.
+   - If your total is higher than the dealer's, you win.
+   - If the dealer's total is higher, you lose.
+   - If totals are equal, it's a tie.
+6. After each hand, you're asked whether you want to play again (press Enter) or stop (`N`).
 
-   * Closest to 21 wins
-   * Going over 21 results in a bust
-   * Equal totals result in a tie
+## Rules & Card Values
+- This is a simplified version of Blackjack: cards are valued **2 through 11** only (no face cards, no suits, and no distinct Ace-as-1-or-11 logic — 11 is just dealt as a fixed value).
+- Each card is drawn independently and at random, with replacement (the same value can be drawn multiple times, similar to drawing from an infinite deck).
+- The dealer must keep hitting until their hand totals at least 17, matching standard Blackjack dealer rules.
 
-## Rules
-
-* Cards range from 2 to 11.
-* 11 represents an Ace.
-* The dealer must continue drawing cards until their total is at least 17.
-* If the player's total exceeds 21, the player busts.
-* If the dealer's total exceeds 21, the dealer busts.
-* The higher total wins if neither player busts.
-
-## Requirements
-
-* Python 3.x
-
-## Running the Program
-
-Open a terminal in the project folder and run:
-
-```bash
-python main.py
-```
-
-## Project Structure
-
-```text
-blackjack/
-│
-├── main.py
-└── README.md
-```
-
-## Future Improvements
-
-* Add face cards (Jack, Queen, King)
-* Add proper Ace handling (1 or 11)
-* Use a full 52-card deck
-* Track wins and losses
-* Display only one dealer card until the player's turn ends
-* Replace replay recursion with a game loop
-
-## Author
-
-Created as a Python Blackjack project for learning programming concepts such as functions, loops, conditionals, lists, user input, and random number generation.
+## Notes
+- This is a simplified, learning-oriented implementation. Differences from standard Blackjack include the absence of face cards/suits, no betting, and no special Ace handling.
+- The game loops via recursive calls (`playA`) each time the player chooses to play again, rather than using an iterative loop.
